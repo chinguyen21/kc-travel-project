@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  destination_id: 1
+  date: 2021-01-04 13:29:34
+  itinerary_id: 1
+
+two:
+  destination_id: 1
+  date: 2021-01-04 13:29:34
+  itinerary_id: 1

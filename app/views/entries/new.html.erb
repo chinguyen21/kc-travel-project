@@ -1,0 +1,18 @@
+<h1> Add Entry </h1>
+<hr/>
+<% if flash[:errors]%>
+  <% flash[:errors].each do |error|%>
+  <li style="color: red"><%= error%></li>
+  <%end%>
+<%end %>
+
+<%= form_for @entry do |f|%>
+<%= f.label :event_id%>
+<%= f.collection_select :event_id, Event.all, :id, :name %><br><br>
+<%= f.label :itinerary_id%>
+<%= f.collection_select :itinerary_id, @itineraries, :id, :name %><br><br>
+<%= f.label :date%>
+<%= f.date_field :date%><br><br>
+<%= f.submit "Add Entry"%>
+
+<%end%>

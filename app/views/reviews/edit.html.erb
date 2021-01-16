@@ -1,0 +1,18 @@
+<h1> Edit Review </h1>
+<hr/>
+<% if flash[:errors]%>
+  <% flash[:errors].each do |error|%>
+  <li style="color: red"><%= error%></li>
+  <%end%>
+<%end %>
+
+<%= form_for @review do |f|%>
+<%= f.label :rating %>
+<%= f.number_field :rating %></br></br>
+<%= f.label :content %>
+<%= f.text_area :content %></br></br>
+<%= f.submit "Edit Review" %></br>
+
+<%end%>
+<hr/>
+<%= button_to "Delete Review", delete_review_path(@review), method: :delete, data: {confirm: "Are you sure to delete this review?"} %>

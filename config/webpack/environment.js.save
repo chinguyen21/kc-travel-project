@@ -1,0 +1,7 @@
+^X
+
+X
+
+dsdfsdsfsefsconst { environment } = require('@rails/webpacker')
+
+module.exports = environment

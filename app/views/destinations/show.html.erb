@@ -1,0 +1,105 @@
+
+
+<h1><%= @destination.name %></h1> 
+<br>
+<% if !User.find(session[:id]).favorites.any? {|favorite| favorite.destination == @destination }%>
+  <%= form_for @favorite do |f| %>
+      <%= f.hidden_field :user_id, value: session[:id]%>
+      <%= f.hidden_field :destination_id, value: @destination.id%>
+      <%= f.submit "♥", :class => "white_button"%>
+  <% end %>
+<%else%>
+  <h2 style="color: red">&hearts;</h2>
+<% end %>
+<br>
+<h3><%= @destination.city.name %>, <%= @destination.state.name %></h3>
+<h3><%= @destination.country.name %></h3><br>
+<%= image_tag(@destination.picture_link, size: "300x300") %>
+<br>
+<h2> All events</h2>
+    <% if flash[:entry_errors] %>
+      <% flash[:entry_errors].each do |error|%>
+        <li style="color: red"><%= error%></li>
+      <%end%>
+    <% end %>
+<% @destination.events.each do |event|%>
+  <h5><li><%= event.name%> - Price: $<%= event.price%></li></h5>
+  <br>
+
+  <% if @itineraries.length > 0%>
+    <%= form_for @entry do |f|%>
+    <%= f.hidden_field :event_id, value: event.id%>
+    <%= f.collection_select :itinerary_id, @itineraries, :id, :name %>
+    <%= f.date_field :date %>
+    <%= f.submit "Add to Itinerary"%>
+    <%end%>
+<br>
+    <%= form_for @itinerary do |f|%>
+    <%= f.label "New Itinerary Name" %>
+    <%= f.text_field :name %>
+    <%= f.hidden_field :user_id, value: session[:id]%>
+      <%= f.fields_for :entries do |f| %>
+          <%= f.hidden_field :event_id, value: event.id%>
+          <%= f.label :date %>
+          <%= f.date_field :date %> 
+      <% end %>
+    <%= f.submit "Add this event to New Itinerary" %>
+    <% end %><br>
+
+  <%else%>
+
+    <%= form_for @itinerary do |f|%>
+    <%= f.label "New Itinerary Name" %>
+    <%= f.text_field :name %>
+    <%= f.hidden_field :user_id, value: session[:id]%>
+    <%= f.fields_for :entries do |f| %>
+        <%= f.hidden_field :event_id, value: event.id%>
+        <%= f.label :date %>
+        <%= f.date_field :date %>
+    <% end %>
+    <%= f.submit "Add this event to New Itinerary" %>
+    <% end %>
+  <% end %>
+<%end%>
+<br>
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error|%>
+        <li style="color: red"><%= error%></li>
+    <%end%>
+<% end %>
+
+ 
+<h2> Write a Review:</h2>
+    <%= form_for @review do |f|%>
+    <h4> Rating </h4>
+    <%= f.number_field :rating, in: 0.0..10.0 %>
+<br>
+    <h4> Content </h4>
+    <%= f.text_area :content, size: "30x5"%><br>
+<br>
+<%= f.hidden_field :user_id, value: session[:id] %>
+<%= f.hidden_field :destination_id, value: @destination.id %>
+  <%= f.submit %>
+<%end%>
+
+<br>
+<h2>All Reviews</h2>
+
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>USER</th>
+      <th>RATING</th>
+      <th>CONTENT</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @destination.reviews.order('id DESC').each do | review | %>
+    <tr>
+      <td><%= review.user.name %></td>
+      <td><%= review.rating %></td>
+      <td><q><%= review.content %></q></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

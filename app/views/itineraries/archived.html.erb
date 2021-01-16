@@ -1,0 +1,7 @@
+<h1>My Archived Itineraries</h1>
+<hr/>
+<% @itineraries.each do |itinerary|%>
+    <h3><%= link_to itinerary.name, user_itinerary_path(itinerary.user, itinerary)%><br></h3>
+<% end %>
+<hr/>
+</br>

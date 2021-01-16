@@ -1,0 +1,25 @@
+<h1> Edit account </h1>
+
+<% if flash[:errors]%>
+  <% flash[:errors].each do |error|%>
+  <h6 style="color: red"><%= error%></h6>
+  <%end%>
+<%end %>
+
+<%= form_for @user do |f|%>
+<h3> Name </h3>
+<%= f.text_field :name%><br>
+<h3> Age </h3>
+<%= f.number_field :age%><br>
+<h3> Email </h3>
+<%= f.email_field :email%><br>
+<h3> Password </h3>
+<%= f.password_field :password%><br>
+<h3> Password confirmation </h3>
+<%= f.password_field :password_confirmation%><br><br>
+<%= f.submit "Create account"%>
+
+<%end%>
+<%end%>
+<hr/>
+<%= button_to "Delete Review", delete_review_path(@review), method: :delete, data: {confirm: "Are you sure to delete this review?"} %>

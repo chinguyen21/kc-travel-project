@@ -1,0 +1,25 @@
+     
+    <% if flash[:errors] %>
+      <% flash[:errors].each do |error|%>
+        <li style="color: red"><%= error%></li>
+      <%end%>
+    <% end %>
+      <h1> New Destination </h1>
+      <br>
+    <%= form_for @destination do |f|%>
+    <h3> Name </h3>
+    <%= f.text_field :name %><br><br>
+    <h3> City </h3>
+    <%= f.collection_select :city_id, City.all, :id, :name%><br><br>
+    <h3> Picture Link </h3>
+    <%= f.url_field :picture_link%><br><br>
+    <h2> Events </h2>
+
+      <%= f.fields_for :events do |f| %>
+        <h3> Name </h3>
+          <%= f.text_field :name %><br>
+        <h3> Price </h3>
+          <%= f.number_field :price %><br><br>
+      <% end %>
+    <%= f.submit "Add Destination" %>
+    <% end %><br>

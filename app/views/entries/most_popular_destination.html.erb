@@ -1,0 +1,9 @@
+
+<h1>Top 10 destinations </h1>
+<hr/>
+<ol>
+<% @destinations.each do |destination|%>
+  <li><%= link_to destination.name, destination_path(destination)%></li>
+<%end%>
+</ol>
+

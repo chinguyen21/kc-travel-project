@@ -1,0 +1,37 @@
+<h1>My Reviews</h1>
+<hr/>
+<% if @reviews.length > 0 %>
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>DESTINATION</th>
+      <th>LOCATION</th>
+      <th>RATING</th>
+      <th>CONTENT</th>
+      <th>EDIT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reviews.each do |review|%>
+    <tr>
+      <td><%= link_to review.destination.name, destination_path(review.destination) %></td>
+      <td><%= review.destination.city.name %>, <%= review.destination.state.name %></br>
+        <%= review.destination.country.name %></td>
+      <td><%= review.rating %></td>
+      <td><q><%= review.content %></q></td>
+      <td><%= button_to "Edit Review", edit_user_review_path(review.user, review), method: :get %></td>
+    </tr>
+        
+    <% end %>
+  </tbody>
+</table>
+
+
+<% else %>
+<b>You don't have any reviews yet!</b>
+<% end %>
+<hr/>
+
+
+
+

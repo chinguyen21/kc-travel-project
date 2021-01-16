@@ -1,0 +1,16 @@
+<h1 >Login Account</h1>
+<hr/>
+</br>
+<% if flash[:errors] %>
+<li style="color: red;"> <%= flash[:errors] %> </li>
+<% end %>
+
+<%= form_for @user, :url => '/login' do | f | %>
+    <h3>Email</h3>
+    <%= f.email_field :email %>
+    </br></br>
+    <h3>Password</h3>
+    <%= f.password_field :password %>
+    </br></br>
+    <%= f.submit "Login" %>
+    <% end %>

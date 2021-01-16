@@ -1,0 +1,43 @@
+<h1><%= @itinerary.name %></h1>
+<hr/>
+<% if @itinerary.archived == false %>
+<% entries = @itinerary.entries.order(:date)%>
+<% destinations = []%>
+<% entries.each { |entry| destinations << entry.event.destination} %>
+<% destinations.uniq.each do |d|%>
+  <h2><%= link_to d.name, destination_path(d)%></h2>
+  <% @itinerary.entries.order(:date).each do |entry|%>
+    <% if Event.find(entry.event_id).destination_id == d.id%>
+      <% if entry.visited == false%>
+        <h4 type="square", style="font-style: italic"><%= entry.event.name%> on <%= entry.date.strftime("%A %B %d, %Y")%></h4><br>
+        <%= form_for entry do |f| %> <br>
+        <%= f.submit "Visited"%>
+        <% end %>
+      <%else%> 
+         <h4 type="square", style="font-style: italic"><del><%= entry.event.name%> on <%= entry.date.strftime("%A %B %d, %Y")%></h4>
+      <%end%>
+    <%end%>
+  <%end%>
+<%end%>
+<br>
+<%= button_to "Archive this Itinerary", archive_itinerary_path(@itinerary), method: :put %>
+<hr/>
+<% else %>
+<% entries = @itinerary.entries.order(:date)%>
+<% destinations = []%>
+<% entries.each { |entry| destinations << entry.event.destination} %>
+<% destinations.uniq.each do |d|%>
+  <h2><%= d.name%></h2>
+  <% @itinerary.entries.order(:date).each do |entry|%>
+    <% if Event.find(entry.event_id).destination_id == d.id%>
+      <% if entry.visited == false %>
+        <h4 type="square", style="font-style: italic"><%= entry.event.name%> on <%= entry.date.strftime("%A %B %d, %Y")%></h4>
+      <%else%> 
+         <h4 type="square", style="font-style: italic"><del><%= entry.event.name%> on <%= entry.date.strftime("%A %B %d, %Y")%></h4>
+      <%end%>
+    <%end%>
+  <%end%>
+<%end%>
+<hr/>
+<% end %>
+

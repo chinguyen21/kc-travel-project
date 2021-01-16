@@ -1,0 +1,12 @@
+
+
+<h1>My Itineraries</h1>
+<hr/>
+<% if @itineraries.length > 0 %>
+<% @itineraries.each do |itinerary|%>
+    <h3><%= link_to itinerary.name, user_itinerary_path(itinerary.user, itinerary)%><br></h3>
+<% end %>
+<% else %>
+<b style="color: yellow">You don't have any itineraries!</b>
+<% end %>
+<hr/>

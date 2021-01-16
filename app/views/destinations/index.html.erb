@@ -1,0 +1,36 @@
+
+
+<h1>Find Destinations</h1>
+<% if flash[:alert]%>
+  <li style="color: red"><%= flash[:alert]%></li>
+<%end %>
+<hr/>
+<%= form_tag("/destinations", method: "get") do %>
+  <h3><%= label_tag "State"%>
+  <%= select_tag "state", option_groups_from_collection_for_select(@countries, :states, :name, :id, :name), include_blank: true %>  
+  <%= label_tag "City"%>
+  <%= select_tag "city", option_groups_from_collection_for_select(@states, :cities, :name, :id, :name), include_blank: true %>   
+  <%= submit_tag "Filter" %>
+  <% end %></h3> 
+</br>
+<%= form_tag("/destinations", method: "get") do %>
+    <h3><%= label_tag "Sort by: "%>
+    <%= select_tag "category", options_for_select(["Popularity", "Rating high to low", "Rating low to high"]), include_blank: true %>     
+    <%= label_tag "Limit" %>
+    <%= select_tag "limit", options_for_select([1, 10, 25, 50]), include_blank: true %>     
+    <%= submit_tag "Sort" %>
+    <% end %>
+    </h3>
+<% if @a_destinations%>
+  <% @a_destinations.each do |destination|%>
+  
+    <h3><%= link_to destination[0].name, destination[0] %> -  <%= destination[1].round(2)%><br></h3>
+  <%end%>
+<%else%>
+  <% @destinations.sort_by(&:name).each do | destination |%>
+  <h3><%= link_to destination.name, destination %></h3><br><br>
+  
+  <%end%>
+<% end %>
+
+<hr/>

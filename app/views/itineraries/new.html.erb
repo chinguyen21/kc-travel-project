@@ -1,0 +1,15 @@
+<h1> Create Itinerary </h1>
+
+<% if flash[:errors]%>
+  <% flash[:errors].each do |error|%>
+  <li style="color: red"><%= error%></li>
+  <%end%>
+<%end %>
+
+<%= form_for @itinerary do |f|%>
+<%= f.label :name%>
+<%= f.text_field :name%><br>
+<%= f.hidden_field :user_id, value: session[:id]%>
+<%= f.submit "Create Itinerary"%>
+
+<%end%>
