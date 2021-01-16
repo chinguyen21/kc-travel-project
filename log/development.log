@@ -1,208 +1,49 @@
-Started GET "/" for ::1 at 2021-01-16 16:08:14 -0500
-  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Started GET "/users/1/itineraries" for ::1 at 2021-01-16 17:00:18 -0500
   [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-Processing by SessionsController#welcome as HTML
-  Rendering sessions/welcome.html.erb within layouts/homepage
-  Rendered sessions/welcome.html.erb within layouts/homepage (Duration: 1.9ms | Allocations: 226)
-[Webpacker] Compiling...
-[Webpacker] Compilation failed:
-yarn run v1.22.4
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
-
-
-warning package.json: No license field
-warning package.json: No license field
-error Command "webpack" not found.
-
-Completed 200 OK in 1399ms (Views: 1393.6ms | ActiveRecord: 0.0ms | Allocations: 28962)
-
-
-Started GET "/jquery.min.js" for ::1 at 2021-01-16 16:08:16 -0500
-  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
-  
-ActionController::RoutingError (No route matches [GET] "/jquery.min.js"):
-  
-actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
-web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
-web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
-web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
-web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
-railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
-railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
-activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
-activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
-activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
-railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
-sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
-rack (2.2.3) lib/rack/method_override.rb:24:in `call'
-rack (2.2.3) lib/rack/runtime.rb:22:in `call'
-activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
-rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
-webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
-rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
-railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
-puma (4.3.7) lib/puma/configuration.rb:228:in `call'
-puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
-puma (4.3.7) lib/puma/server.rb:472:in `process_client'
-puma (4.3.7) lib/puma/server.rb:328:in `block in run'
-puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
-Started GET "/" for ::1 at 2021-01-16 16:09:03 -0500
-Processing by SessionsController#welcome as HTML
-  Rendering sessions/welcome.html.erb within layouts/homepage
-  Rendered sessions/welcome.html.erb within layouts/homepage (Duration: 0.4ms | Allocations: 72)
+Processing by ItinerariesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/itineraries_controller.rb:6:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/itineraries_controller.rb:9:in `index'
+  Rendering itineraries/index.html.erb within layouts/nav_page
+  [1m[36mItinerary Load (0.5ms)[0m  [1m[34mSELECT "itineraries".* FROM "itineraries" WHERE "itineraries"."user_id" = $1 AND (archived = false)[0m  [["user_id", 1]]
+  ↳ app/views/itineraries/index.html.erb:5
+  Rendered itineraries/index.html.erb within layouts/nav_page (Duration: 3.2ms | Allocations: 989)
 [Webpacker] Everything's up-to-date. Nothing to do
-Completed 200 OK in 19ms (Views: 17.9ms | ActiveRecord: 0.0ms | Allocations: 10724)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/nav_page.html.erb:53
+Completed 200 OK in 177ms (Views: 116.5ms | ActiveRecord: 6.8ms | Allocations: 43374)
 
 
-Started GET "/jquery.min.js" for ::1 at 2021-01-16 16:09:03 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/jquery.min.js"):
-  
-actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
-web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
-web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
-web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
-web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
-railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
-railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
-activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
-activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
-activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
-railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
-sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
-rack (2.2.3) lib/rack/method_override.rb:24:in `call'
-rack (2.2.3) lib/rack/runtime.rb:22:in `call'
-activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
-rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
-webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
-rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
-railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
-puma (4.3.7) lib/puma/configuration.rb:228:in `call'
-puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
-puma (4.3.7) lib/puma/server.rb:472:in `process_client'
-puma (4.3.7) lib/puma/server.rb:328:in `block in run'
-puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
-Started GET "/" for ::1 at 2021-01-16 16:11:03 -0500
-  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
-  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-Processing by SessionsController#welcome as HTML
-  Rendering sessions/welcome.html.erb within layouts/homepage
-  Rendered sessions/welcome.html.erb within layouts/homepage (Duration: 1.4ms | Allocations: 223)
+Started GET "/itineraries/new" for ::1 at 2021-01-16 17:00:20 -0500
+Processing by ItinerariesController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  Rendering itineraries/new.html.erb within layouts/nav_page
+  Rendered itineraries/new.html.erb within layouts/nav_page (Duration: 229.2ms | Allocations: 206129)
 [Webpacker] Everything's up-to-date. Nothing to do
-Completed 200 OK in 192ms (Views: 187.3ms | ActiveRecord: 0.0ms | Allocations: 27739)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/nav_page.html.erb:53
+Completed 200 OK in 301ms (Views: 258.8ms | ActiveRecord: 10.9ms | Allocations: 227901)
 
 
-Started GET "/jquery.min.js" for ::1 at 2021-01-16 16:11:04 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/jquery.min.js"):
-  
-actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
-web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
-web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
-web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
-web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
-railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
-railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
-activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
-activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
-activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
-railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
-sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
-rack (2.2.3) lib/rack/method_override.rb:24:in `call'
-rack (2.2.3) lib/rack/runtime.rb:22:in `call'
-activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
-rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
-webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
-rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
-railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
-puma (4.3.7) lib/puma/configuration.rb:228:in `call'
-puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
-puma (4.3.7) lib/puma/server.rb:472:in `process_client'
-puma (4.3.7) lib/puma/server.rb:328:in `block in run'
-puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
-Started GET "/jquery.min.js" for ::1 at 2021-01-16 16:11:04 -0500
-  
-ActionController::RoutingError (No route matches [GET] "/jquery.min.js"):
-  
-actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
-web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
-web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
-web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
-web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
-railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
-railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
-activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
-activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
-activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
-railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
-sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
-rack (2.2.3) lib/rack/method_override.rb:24:in `call'
-rack (2.2.3) lib/rack/runtime.rb:22:in `call'
-activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
-rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
-actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
-webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
-rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
-railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
-puma (4.3.7) lib/puma/configuration.rb:228:in `call'
-puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
-puma (4.3.7) lib/puma/server.rb:472:in `process_client'
-puma (4.3.7) lib/puma/server.rb:328:in `block in run'
-puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
-Started GET "/login" for ::1 at 2021-01-16 16:11:06 -0500
-Processing by SessionsController#new as HTML
-  Rendering sessions/new.html.erb within layouts/filter_page
-  Rendered sessions/new.html.erb within layouts/filter_page (Duration: 4.1ms | Allocations: 748)
-[Webpacker] Everything's up-to-date. Nothing to do
-Completed 200 OK in 45ms (Views: 17.4ms | ActiveRecord: 0.7ms | Allocations: 21517)
-
-
-Started POST "/login" for ::1 at 2021-01-16 16:11:15 -0500
-Processing by SessionsController#create as HTML
-  Parameters: {"authenticity_token"=>"PCsEy5whmnPQeIoPrNBMoFDySFveZi8D3UwYB7wZMSlV1NapM5PRKW5O9S1sd8jLj18LLZMU08+ql+ZoVgx1ZQ==", "user"=>{"email"=>"admin@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
-  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "admin@gmail.com"], ["LIMIT", 1]]
-  ↳ app/controllers/sessions_controller.rb:12:in `create'
-Redirected to http://localhost:3000/users/1/welcome
-Completed 302 Found in 238ms (ActiveRecord: 0.5ms | Allocations: 1846)
-
-
-Started GET "/users/1/welcome" for ::1 at 2021-01-16 16:11:15 -0500
+Started GET "/users/1/welcome" for ::1 at 2021-01-16 17:00:22 -0500
 Processing by UsersController#welcome as HTML
   Parameters: {"user_id"=>"1"}
   Rendering users/welcome.html.erb within layouts/welcome_page
-  Rendered users/welcome.html.erb within layouts/welcome_page (Duration: 0.2ms | Allocations: 74)
+  Rendered users/welcome.html.erb within layouts/welcome_page (Duration: 0.6ms | Allocations: 79)
 [Webpacker] Everything's up-to-date. Nothing to do
-  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
   ↳ app/views/layouts/welcome_page.html.erb:75
-  [1m[36mDestination Load (2.2ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations"[0m
+  [1m[36mDestination Load (0.6ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations"[0m
   ↳ app/views/layouts/welcome_page.html.erb:77
-Completed 200 OK in 33ms (Views: 29.2ms | ActiveRecord: 3.0ms | Allocations: 22313)
+Completed 200 OK in 45ms (Views: 39.9ms | ActiveRecord: 4.0ms | Allocations: 21842)
 
 
-Started GET "/users/1/jquery.min.js" for ::1 at 2021-01-16 16:11:15 -0500
+Started GET "/users/1/jquery.min.js" for ::1 at 2021-01-16 17:00:22 -0500
   
 ActionController::RoutingError (No route matches [GET] "/users/1/jquery.min.js"):
   
@@ -236,35 +77,1289 @@ puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
 puma (4.3.7) lib/puma/server.rb:472:in `process_client'
 puma (4.3.7) lib/puma/server.rb:328:in `block in run'
 puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
-Started GET "/users/1" for ::1 at 2021-01-16 16:11:19 -0500
+Started GET "/users/1/favorites" for ::1 at 2021-01-16 17:00:23 -0500
+Processing by FavoritesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:6:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9:in `index'
+  Rendering favorites/index.html.erb within layouts/filter_page
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/favorites/index.html.erb:3
+  [1m[36mDestination Load (0.2ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations" WHERE "destinations"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/favorites/index.html.erb:5
+  Rendered favorites/index.html.erb within layouts/filter_page (Duration: 15.4ms | Allocations: 6382)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/filter_page.html.erb:57
+Completed 200 OK in 42ms (Views: 26.2ms | ActiveRecord: 4.8ms | Allocations: 20452)
+
+
+Started GET "/destinations/6" for ::1 at 2021-01-16 17:00:24 -0500
+Processing by DestinationsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mDestination Load (0.7ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations" WHERE "destinations"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:51:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:52:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:54:in `show'
+  Rendering destinations/show.html.erb within layouts/filter_page
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:5
+  [1m[36mFavorite Load (0.3ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/destinations/show.html.erb:5
+  [1m[36mDestination Load (0.3ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations" WHERE "destinations"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:5
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:15
+  [1m[36mState Load (0.8ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:15
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:16
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."destination_id" = $1[0m  [["destination_id", 6]]
+  ↳ app/views/destinations/show.html.erb:25
+  [1m[36mItinerary Load (0.3ms)[0m  [1m[34mSELECT "itineraries".* FROM "itineraries" WHERE "itineraries"."user_id" = $1 AND (archived = false)[0m  [["user_id", 1]]
+  ↳ app/views/destinations/show.html.erb:29
+  [1m[36mReview Load (0.8ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."destination_id" = $1 ORDER BY id DESC[0m  [["destination_id", 6]]
+  ↳ app/views/destinations/show.html.erb:97
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  Rendered destinations/show.html.erb within layouts/filter_page (Duration: 74.7ms | Allocations: 40181)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/filter_page.html.erb:57
+Completed 200 OK in 109ms (Views: 73.9ms | ActiveRecord: 16.4ms | Allocations: 58734)
+
+
+Started GET "/destinations" for ::1 at 2021-01-16 17:00:26 -0500
+Processing by DestinationsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:5:in `index'
+  [1m[36mDestination Load (0.8ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations"[0m
+  ↳ app/controllers/destinations_controller.rb:6:in `map'
+  [1m[36mCountry Load (0.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 87], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 140], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 64], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 218], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 175], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 162], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 180], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 239], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 167], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 276], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 125], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 269], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 240], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 246], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 83], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 248], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 124], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 278], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 233], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 62], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 206], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 226], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 246], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 235], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 124], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 67], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 48], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 260], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 259], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 201], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 118], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 48], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 135], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 262], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 207], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 251], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 176], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 182], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 119], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 173], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 196], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 254], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 204], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 65], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 178], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 134], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 180], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 152], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 290], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 239], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 216], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 230], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 78], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 143], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 241], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 201], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 222], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 157], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 225], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 37], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 59], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 64], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 81], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 175], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 202], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 193], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 78], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 222], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 195], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 154], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 124], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 62], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 274], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 205], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 156], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 139], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 242], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 240], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 142], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 36], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 126], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 87], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 234], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 230], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 104], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 83], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 119], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 140], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 264], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 110], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 69], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 250], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 200], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 53], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 137], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 157], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 243], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 203], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 90], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 193], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 147], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 234], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 44], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 90], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 190], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 238], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 170], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 255], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 117], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 193], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 49], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 111], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 164], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 147], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 103], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 213], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 266], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 254], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 240], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 102], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 145], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 212], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 88], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 254], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 226], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 58], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 211], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 269], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 261], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 217], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 156], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 271], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 118], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 250], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 49], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 162], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 120], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 279], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 162], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 194], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 256], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 164], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 155], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 163], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 224], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 210], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 251], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 111], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 201], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 135], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 245], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 146], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 96], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 212], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 236], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 122], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 247], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 220], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 103], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 69], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 285], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 141], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 147], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 255], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 235], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 130], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 172], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 185], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 113], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 205], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 114], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Country Load (0.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 247], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:6:in `block in index'
+  [1m[36mCACHE Destination Load (0.0ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations"[0m
+  ↳ app/controllers/destinations_controller.rb:7:in `map'
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 87], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 140], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 64], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 218], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 175], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 162], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 180], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 239], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 167], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 276], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 125], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 269], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 240], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 246], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 83], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 248], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 124], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 278], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 233], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 62], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 206], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 226], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 246], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 235], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 124], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 67], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 48], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 260], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 259], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 201], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 118], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 48], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 135], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 262], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 207], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 251], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 176], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 182], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 119], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 173], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 196], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 254], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 204], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 65], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 178], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 134], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 180], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 152], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 290], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 239], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 216], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 230], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 78], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 143], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 241], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 201], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 222], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 157], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 225], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 37], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 59], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 64], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 81], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 175], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 202], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 193], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 78], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 222], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 195], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 154], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 124], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 62], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 274], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.4ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 205], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 156], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 139], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 242], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 240], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 142], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 36], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 126], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 87], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 234], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 230], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 104], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 83], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 119], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 140], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 264], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 110], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 69], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 250], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 200], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 53], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 137], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 157], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.4ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 243], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 203], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 90], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 193], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 147], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 234], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 44], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 90], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 190], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 238], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 170], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 255], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 117], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 193], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 49], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 111], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 164], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 147], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 103], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 213], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 266], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 254], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 240], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 102], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 145], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 212], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 88], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 254], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 226], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 58], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 211], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 269], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 261], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 217], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 156], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 271], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 118], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 250], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 49], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 162], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 120], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 279], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 162], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 194], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 256], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 164], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 155], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 163], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 224], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 210], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 251], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 111], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 201], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 135], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 245], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 146], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 96], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 212], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 236], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 122], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 247], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 220], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 103], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 69], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 285], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 141], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 147], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 255], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 235], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 130], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 172], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 185], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 113], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 205], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 114], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  [1m[36mCACHE State Load (0.0ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 247], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:7:in `block in index'
+  Rendering destinations/index.html.erb within layouts/destination_nav_page
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 35]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 4]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 30]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 6]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 18]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 11]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 19]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 27]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 26]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 40]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 25]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 17]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 20]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 10]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 12]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 38]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 5]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 7]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 8]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 39]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 2]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 15]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 41]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 3]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 23]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.2ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 37]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.1ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 33]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mState Load (0.3ms)[0m  [1m[34mSELECT "states".* FROM "states" WHERE "states"."country_id" = $1[0m  [["country_id", 28]]
+  ↳ app/views/destinations/index.html.erb:10
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 33]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 41]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 28]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 13]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 18]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 45]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 44]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 32]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 21]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 6]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 3]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 11]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 2]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 7]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 26]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 38]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 10]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 34]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 24]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 22]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 29]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 39]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 27]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 40]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 23]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 20]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 42]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 37]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 30]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 36]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 25]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 35]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 16]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 14]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 17]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 31]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 15]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 4]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 19]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 5]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCity Load (0.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."state_id" = $1[0m  [["state_id", 12]]
+  ↳ app/views/destinations/index.html.erb:12
+  [1m[36mCACHE Destination Load (0.0ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations"[0m
+  ↳ app/views/destinations/index.html.erb:30:in `sort_by'
+  Rendered destinations/index.html.erb within layouts/destination_nav_page (Duration: 128.6ms | Allocations: 79359)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/destination_nav_page.html.erb:57
+Completed 200 OK in 666ms (Views: 126.6ms | ActiveRecord: 73.0ms | Allocations: 475879)
+
+
+Started GET "/destinations/127" for ::1 at 2021-01-16 17:00:28 -0500
+Processing by DestinationsController#show as HTML
+  Parameters: {"id"=>"127"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mDestination Load (0.4ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations" WHERE "destinations"."id" = $1 LIMIT $2[0m  [["id", 127], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:51:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:52:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:54:in `show'
+  Rendering destinations/show.html.erb within layouts/filter_page
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:5
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/destinations/show.html.erb:5
+  [1m[36mDestination Load (1.2ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations" WHERE "destinations"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:5
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 170], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:15
+  [1m[36mState Load (0.5ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 170], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:15
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 170], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:16
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."destination_id" = $1[0m  [["destination_id", 127]]
+  ↳ app/views/destinations/show.html.erb:25
+  [1m[36mItinerary Load (0.6ms)[0m  [1m[34mSELECT "itineraries".* FROM "itineraries" WHERE "itineraries"."user_id" = $1 AND (archived = false)[0m  [["user_id", 1]]
+  ↳ app/views/destinations/show.html.erb:29
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."destination_id" = $1 ORDER BY id DESC[0m  [["destination_id", 127]]
+  ↳ app/views/destinations/show.html.erb:97
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  Rendered destinations/show.html.erb within layouts/filter_page (Duration: 38.7ms | Allocations: 12299)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/filter_page.html.erb:57
+Completed 200 OK in 76ms (Views: 60.1ms | ActiveRecord: 5.2ms | Allocations: 25216)
+
+
+Started POST "/favorites" for ::1 at 2021-01-16 17:00:30 -0500
+Processing by FavoritesController#create as HTML
+  Parameters: {"authenticity_token"=>"g24vCWEKgJWfborVNnomxbsa3UmYSLvy+i2oQklsy6ZLNic+uUooq0cZkrt7X6s1L9FcSccGJ1iodvFgs7C56A==", "favorite"=>{"user_id"=>"1", "destination_id"=>"127"}, "commit"=>"♥"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:18:in `create'
+  [1m[36mDestination Load (0.2ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations" WHERE "destinations"."id" = $1 LIMIT $2[0m  [["id", 127], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18:in `create'
+  [1m[36mFavorite Create (1.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "destination_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["destination_id", 127], ["created_at", "2021-01-16 22:00:30.817057"], ["updated_at", "2021-01-16 22:00:30.817057"]]
+  ↳ app/controllers/favorites_controller.rb:18:in `create'
+  [1m[35m (40.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:18:in `create'
+Redirected to http://localhost:3000/destinations/127
+Completed 302 Found in 54ms (ActiveRecord: 42.6ms | Allocations: 6359)
+
+
+Started GET "/destinations/127" for ::1 at 2021-01-16 17:00:30 -0500
+Processing by DestinationsController#show as HTML
+  Parameters: {"id"=>"127"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mDestination Load (0.1ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations" WHERE "destinations"."id" = $1 LIMIT $2[0m  [["id", 127], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:51:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:52:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/destinations_controller.rb:54:in `show'
+  Rendering destinations/show.html.erb within layouts/filter_page
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:5
+  [1m[36mFavorite Load (0.3ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/destinations/show.html.erb:5
+  [1m[36mDestination Load (0.1ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations" WHERE "destinations"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:5
+  [1m[36mDestination Load (0.1ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations" WHERE "destinations"."id" = $1 LIMIT $2[0m  [["id", 127], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:5
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 170], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:15
+  [1m[36mState Load (0.4ms)[0m  [1m[34mSELECT "states".* FROM "states" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 170], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:15
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" INNER JOIN "states" ON "countries"."id" = "states"."country_id" INNER JOIN "cities" ON "states"."id" = "cities"."state_id" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 170], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:16
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."destination_id" = $1[0m  [["destination_id", 127]]
+  ↳ app/views/destinations/show.html.erb:25
+  [1m[36mItinerary Load (0.3ms)[0m  [1m[34mSELECT "itineraries".* FROM "itineraries" WHERE "itineraries"."user_id" = $1 AND (archived = false)[0m  [["user_id", 1]]
+  ↳ app/views/destinations/show.html.erb:29
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."destination_id" = $1 ORDER BY id DESC[0m  [["destination_id", 127]]
+  ↳ app/views/destinations/show.html.erb:97
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/destinations/show.html.erb:99
+  Rendered destinations/show.html.erb within layouts/filter_page (Duration: 21.9ms | Allocations: 12743)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/filter_page.html.erb:57
+Completed 200 OK in 39ms (Views: 31.7ms | ActiveRecord: 2.8ms | Allocations: 25662)
+
+
+Started POST "/itineraries" for ::1 at 2021-01-16 17:00:41 -0500
+Processing by ItinerariesController#create as HTML
+  Parameters: {"authenticity_token"=>"GMqQDu3daETQwKfnuf0zxgG4kigJQfch5IYuaT3xrXhiK3SJb+qi38fg+Zb099G34JL/unWJFJupUonp8pNO4g==", "itinerary"=>{"name"=>"My birthday", "user_id"=>"1", "entries_attributes"=>{"0"=>{"event_id"=>"127", "date"=>"2021-01-21"}}}, "commit"=>"Add this event to New Itinerary"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/itineraries_controller.rb:38:in `create'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/itineraries_controller.rb:38:in `create'
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 127], ["LIMIT", 1]]
+  ↳ app/controllers/itineraries_controller.rb:38:in `create'
+  [1m[36mItinerary Create (0.6ms)[0m  [1m[32mINSERT INTO "itineraries" ("name", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "My birthday"], ["user_id", 1], ["created_at", "2021-01-16 22:00:41.513751"], ["updated_at", "2021-01-16 22:00:41.513751"]]
+  ↳ app/controllers/itineraries_controller.rb:38:in `create'
+  [1m[36mEntry Create (0.7ms)[0m  [1m[32mINSERT INTO "entries" ("event_id", "date", "itinerary_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["event_id", 127], ["date", "2021-01-21 00:00:00"], ["itinerary_id", 1], ["created_at", "2021-01-16 22:00:41.516134"], ["updated_at", "2021-01-16 22:00:41.516134"]]
+  ↳ app/controllers/itineraries_controller.rb:38:in `create'
+  [1m[35m (40.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/itineraries_controller.rb:38:in `create'
+Redirected to http://localhost:3000/itineraries/1
+Completed 302 Found in 65ms (ActiveRecord: 42.7ms | Allocations: 9953)
+
+
+Started GET "/itineraries/1" for ::1 at 2021-01-16 17:00:41 -0500
+Processing by ItinerariesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/itineraries_controller.rb:17:in `show'
+  [1m[36mItinerary Load (0.2ms)[0m  [1m[34mSELECT "itineraries".* FROM "itineraries" WHERE "itineraries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/itineraries_controller.rb:26:in `show'
+  Rendering itineraries/show.html.erb within layouts/nav_page
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."itinerary_id" = $1 ORDER BY "entries"."date" ASC[0m  [["itinerary_id", 1]]
+  ↳ app/views/itineraries/show.html.erb:6
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 127], ["LIMIT", 1]]
+  ↳ app/views/itineraries/show.html.erb:6
+  [1m[36mDestination Load (0.3ms)[0m  [1m[34mSELECT "destinations".* FROM "destinations" WHERE "destinations"."id" = $1 LIMIT $2[0m  [["id", 127], ["LIMIT", 1]]
+  ↳ app/views/itineraries/show.html.erb:6
+  [1m[36mCACHE Entry Load (0.0ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."itinerary_id" = $1 ORDER BY "entries"."date" ASC[0m  [["itinerary_id", 1]]
+  ↳ app/views/itineraries/show.html.erb:9
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 127], ["LIMIT", 1]]
+  ↳ app/views/itineraries/show.html.erb:10
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 127], ["LIMIT", 1]]
+  ↳ app/views/itineraries/show.html.erb:12
+  Rendered itineraries/show.html.erb within layouts/nav_page (Duration: 12.5ms | Allocations: 5692)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/nav_page.html.erb:53
+Completed 200 OK in 28ms (Views: 23.1ms | ActiveRecord: 1.6ms | Allocations: 17984)
+
+
+Started GET "/itineraries/new" for ::1 at 2021-01-16 17:00:56 -0500
+Processing by ItinerariesController#new as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  Rendering itineraries/new.html.erb within layouts/nav_page
+  Rendered itineraries/new.html.erb within layouts/nav_page (Duration: 2.1ms | Allocations: 447)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/nav_page.html.erb:53
+Completed 200 OK in 29ms (Views: 22.9ms | ActiveRecord: 1.1ms | Allocations: 11656)
+
+
+Started GET "/users/1/itineraries/archived" for ::1 at 2021-01-16 17:00:58 -0500
+Processing by ItinerariesController#archived as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:3:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/itineraries_controller.rb:54:in `archived'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/itineraries_controller.rb:57:in `archived'
+  Rendering itineraries/archived.html.erb within layouts/nav_page
+  [1m[36mItinerary Load (0.3ms)[0m  [1m[34mSELECT "itineraries".* FROM "itineraries" WHERE "itineraries"."user_id" = $1 AND (archived = true)[0m  [["user_id", 1]]
+  ↳ app/views/itineraries/archived.html.erb:3
+  Rendered itineraries/archived.html.erb within layouts/nav_page (Duration: 3.6ms | Allocations: 808)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/nav_page.html.erb:53
+Completed 200 OK in 21ms (Views: 15.8ms | ActiveRecord: 1.0ms | Allocations: 13149)
+
+
+Started GET "/users/1" for ::1 at 2021-01-16 17:00:59 -0500
 Processing by UsersController#show as HTML
   Parameters: {"id"=>"1"}
-  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
   ↳ app/controllers/application_controller.rb:3:in `current_user'
-  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
   ↳ app/controllers/users_controller.rb:7:in `show'
   Rendering users/show.html.erb within layouts/my_account_page
-  Rendered users/show.html.erb within layouts/my_account_page (Duration: 1.4ms | Allocations: 308)
+  Rendered users/show.html.erb within layouts/my_account_page (Duration: 1.7ms | Allocations: 306)
 [Webpacker] Everything's up-to-date. Nothing to do
-Completed 200 OK in 28ms (Views: 21.6ms | ActiveRecord: 0.4ms | Allocations: 11965)
+Completed 200 OK in 33ms (Views: 27.7ms | ActiveRecord: 0.4ms | Allocations: 11869)
 
 
-Started DELETE "/logout" for ::1 at 2021-01-16 16:11:21 -0500
+Started DELETE "/logout" for ::1 at 2021-01-16 17:00:59 -0500
 Processing by SessionsController#destroy as HTML
-  Parameters: {"authenticity_token"=>"k2JAPoFt2bBCWxX29bhgTxc2yRx+PiPqh1+bTgdTXj3IcHWRis+NHEHfVP6Yrag/2PQ/P2Uh8w9/KIjy3I+/iw=="}
+  Parameters: {"authenticity_token"=>"qc68zZD/Uh8oX43WJOoBspp4zUh6lrpc1pAh8dIcnvsj5+UTC83tkoNXN7UUCua6LBbG/Y/jBlBor63Ej6i73g=="}
 Redirected to http://localhost:3000/
-Completed 302 Found in 16ms (ActiveRecord: 0.0ms | Allocations: 702)
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 739)
 
 
-Started GET "/" for ::1 at 2021-01-16 16:11:21 -0500
+Started GET "/" for ::1 at 2021-01-16 17:00:59 -0500
 Processing by SessionsController#welcome as HTML
   Rendering sessions/welcome.html.erb within layouts/homepage
-  Rendered sessions/welcome.html.erb within layouts/homepage (Duration: 0.0ms | Allocations: 4)
+  Rendered sessions/welcome.html.erb within layouts/homepage (Duration: 0.3ms | Allocations: 73)
 [Webpacker] Everything's up-to-date. Nothing to do
-Completed 200 OK in 11ms (Views: 10.6ms | ActiveRecord: 0.0ms | Allocations: 9836)
+Completed 200 OK in 15ms (Views: 14.1ms | ActiveRecord: 0.0ms | Allocations: 10681)
 
 
-Started GET "/jquery.min.js" for ::1 at 2021-01-16 16:11:22 -0500
+Started GET "/jquery.min.js" for ::1 at 2021-01-16 17:01:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/jquery.min.js"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/jquery.min.js" for ::1 at 2021-01-16 17:01:00 -0500
   
 ActionController::RoutingError (No route matches [GET] "/jquery.min.js"):
   
