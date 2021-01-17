@@ -23,8 +23,6 @@ Rails.application.routes.draw do
   resources :events
   resources :favorites
   resources :reviews
-  resources :user_events
-  resources :users
 
   put '/users/:id/itineraries/:id/edit', to: 'entries#change_date', as: 'change_date'
   put '/users/:id/itineraries/:id', to: 'itineraries#archive', as: 'archive_itinerary'
