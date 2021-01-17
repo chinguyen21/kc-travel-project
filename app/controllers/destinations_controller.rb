@@ -27,7 +27,7 @@ class DestinationsController < ApplicationController
         elsif params[:limit]
             @destinations = Destination.all.first(params[:limit].to_i)
         else
-            @destinations = Destination.all
+            @destinations = []
         end
     end
 

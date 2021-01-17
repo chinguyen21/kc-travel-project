@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
+    layout "homepage"
     def welcome
-        render :layout => "homepage"
+
     end
     
     def new
         @user = User.new
-        render :layout => "filter_page"
     end
 
     def create
