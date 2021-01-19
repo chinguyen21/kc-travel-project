@@ -22,15 +22,13 @@ A travel app made with Ruby, Rails, Bootstrap, and SQLite
 
 ## FEATURES
 
-* User can sign up or login (with security using Bcrypt) to the application.
-* User can search the destinations by Rating, by Popular, by city and by state
-* User can mark destinations as their favorites.
-* User can create their own Itinerary and add events of a specific destination. 
-Each itinerary is a planner for their special days.
-* User can keep track their itineraries and can mark one as a archived itinerary
-after they visited.
-* User can leave reviews and ratings for destination and it will update to database.
-* User can contribute to our application by update new destinations and events.
+* Users can sign up or login (with security using Bcrypt) to the application.
+* Users can search the destinations by Rating, by Popular, by City and by State
+* Users can mark destinations as their favorites.
+* Users can create their own itinerary and can add events of a specific destination. Each itinerary is a planner for their special days.
+* Users can keep track of their itineraries and can mark one as an archived itinerary after they visited.
+* Users can post reviews and ratings for destination and it will update the database.
+* Users can contribute to our application by updating new destinations and events.
 
 ## PREVIEW
 
