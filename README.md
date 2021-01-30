@@ -1,6 +1,6 @@
 # Travel app (Ruby on Rails Application)
 
-A travel app made with Ruby, Rails, Bootstrap, and SQLite
+A travel app made with Ruby, Rails, Bootstrap, HTML, CSS, and SQLite
 
 
 ## TOOL
@@ -11,6 +11,8 @@ A travel app made with Ruby, Rails, Bootstrap, and SQLite
 4. SQLite
 5. Bootstrap
 6. Bcrypt
+7. HTML
+8. CSS
   
 
 ## INTRUCTIONS
